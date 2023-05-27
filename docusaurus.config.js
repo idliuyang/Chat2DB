@@ -120,6 +120,10 @@ const config = {
             ],
           },
           {
+            label: '下载',
+            to: "https://chat2db.opensource.alibaba.com/docs/guides/download"
+          },
+          {
             label: '体验',
             to: 'http://test.sqlgpt.cn',
           },

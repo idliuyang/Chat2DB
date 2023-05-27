@@ -113,7 +113,7 @@ export default function SDKsSection() {
             {
               <Link
                 className="text-sm"
-                href={'https://github.com/alibaba/Chat2DB/releases'}
+                href={'/docs/guides/download'}
               >
                 前往下载 &rarr;
               </Link>
@@ -146,7 +146,7 @@ export default function SDKsSection() {
             {
               <Link
                 className="text-sm"
-                href={'https://github.com/alibaba/Chat2DB/releases'}
+                href={'/docs/guides/download'}
               >
                 前往下载 &rarr;
               </Link>
@@ -157,41 +157,12 @@ export default function SDKsSection() {
             <p className="text-sm leading-relaxed text-text-400">
               连接数据库之后新建查询Console，除执行基本DML或者DDL之外，可以轻松使用自然语言转SQL，SQL解释，SQL优化，SQL转换等能力
             </p>
-            {/*<div>*/}
-            {/*  <ul className="mb-0 flex list-none flex-col gap-2 pl-0">*/}
-            {/*    <li>*/}
-            {/*      <SDKLink href="react-ui-kit" Icon={ReactIcon} label="React" />*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*      <SDKLink*/}
-            {/*        href="angular-ui-kit"*/}
-            {/*        Icon={AngularIcon}*/}
-            {/*        label="Angular"*/}
-            {/*      />*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*      <SDKLink*/}
-            {/*        href="ui-kit"*/}
-            {/*        Icon={HTMLIcon}*/}
-            {/*        label="Web Components"*/}
-            {/*      />*/}
-            {/*    </li>*/}
-            {/*  </ul>*/}
-            {/*</div>*/}
           </div>
           <div className="flex-1 rounded-b-3xl bg-secondary-800 p-6 px-8 lg:rounded-r-3xl lg:rounded-bl-none">
             <h4>要求</h4>
             <p className="text-sm leading-relaxed text-text-400">
               集成了ChatGPT开放能力，需要在设置中配置OPENAI_API_KEY
             </p>
-            {/*<ul className="mb-0 flex list-none flex-col gap-2 pl-0">*/}
-            {/*  <li>*/}
-            {/*    <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />*/}
-            {/*  </li>*/}
-            {/*  <li>*/}
-            {/*    <SDKLink href="react-web-core" Icon={ReactIcon} label="React" />*/}
-            {/*  </li>*/}
-            {/*</ul>*/}
           </div>
         </div>
 
@@ -208,7 +179,7 @@ export default function SDKsSection() {
             {
               <Link
                 className="text-sm"
-                href={'https://github.com/alibaba/Chat2DB/releases'}
+                href={'/docs/guides/download'}
               >
                 前往下载 &rarr;
               </Link>
