@@ -34,16 +34,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67503);
 /* harmony import */ var _dyte_client_faf935bd_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43367);
 /* harmony import */ var _notification_8c0067e0_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(91007);
-/* harmony import */ var _string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(22906);
+/* harmony import */ var _string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(22906);
 /* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(51922);
 /* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(51306);
 /* harmony import */ var _default_ui_config_6e4b8718_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36881);
 /* harmony import */ var _chat_0611caa4_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(62270);
 /* harmony import */ var _flags_fc6b98fd_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(77347);
-/* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(86386);
-/* harmony import */ var _user_prefs_f52d234f_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(85114);
-/* harmony import */ var _graceful_storage_33bc316d_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(60804);
-/* harmony import */ var _livestream_2f88cfb2_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(50528);
+/* harmony import */ var _user_prefs_f52d234f_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(85114);
+/* harmony import */ var _graceful_storage_33bc316d_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(60804);
+/* harmony import */ var _livestream_2f88cfb2_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(50528);
 
 
 
@@ -276,7 +275,7 @@ const DyteNotifications = class {
       if (notifications.participant_joined) {
         this.add({
           id: `${participant.id}-joined`,
-          message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_12__.f)(participant.name)} just joined`,
+          message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_11__.f)(participant.name)} just joined`,
           image: participant.picture,
           duration: notification_duration.participant_joined,
         });
@@ -289,7 +288,7 @@ const DyteNotifications = class {
       if (notifications.participant_left) {
         this.add({
           id: `${participant.id}-left`,
-          message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_12__.f)(participant.name)} left`,
+          message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_11__.f)(participant.name)} left`,
           image: participant.picture,
           duration: notification_duration.participant_left,
         });
@@ -302,7 +301,7 @@ const DyteNotifications = class {
       const id = `${participant.id}-joined-waitlist`;
       this.add({
         id,
-        message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_12__.f)(participant.name)} is requesting to join the meeting`,
+        message: `${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_11__.f)(participant.name)} is requesting to join the meeting`,
         image: participant.picture,
         duration: notification_duration.participant_joined_waitlist,
         button: {
@@ -329,7 +328,7 @@ const DyteNotifications = class {
             this.add({
               id: `message-${Math.random().toString(36)}`,
               icon: this.iconPack.chat,
-              message: `${parsedMessage.displayName}: ${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_12__.s)(parsedMessage.message, 20)}`,
+              message: `${parsedMessage.displayName}: ${(0,_string_8aa800b0_js__WEBPACK_IMPORTED_MODULE_11__.s)(parsedMessage.message, 20)}`,
               duration: notification_duration.chat,
             });
           }

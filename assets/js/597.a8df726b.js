@@ -11,9 +11,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   dyte_participants_audio: () => (/* binding */ DyteParticipantsAudio)
 /* harmony export */ });
 /* harmony import */ var _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67503);
-/* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86386);
-/* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51306);
-/* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(51922);
+/* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86386);
+/* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51306);
+/* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51922);
 
 
 
@@ -54,14 +54,14 @@ class DyteAudio {
         }
       }
       else if (err.name !== 'AbortError') {
-        _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_1__.l.error('[dyte-audio] play() error\n', err);
+        _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-audio] play() error\n', err);
       }
     }));
   }
   async setDevice(id) {
     var _a, _b, _c;
     await ((_c = (_b = (_a = this.audio).setSinkId) === null || _b === void 0 ? void 0 : _b.call(_a, id)) === null || _c === void 0 ? void 0 : _c.catch((err) => {
-      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_1__.l.error('[dyte-audio] setSinkId() error\n', err);
+      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-audio] setSinkId() error\n', err);
     }));
   }
   onError(onError) {
@@ -80,8 +80,8 @@ const DyteParticipantsAudio = class {
       this.dialogClose.emit();
     };
     this.meeting = undefined;
-    this.iconPack = _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_3__.d;
-    this.t = (0,_index_c9699924_js__WEBPACK_IMPORTED_MODULE_2__.u)();
+    this.iconPack = _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_2__.d;
+    this.t = (0,_index_c9699924_js__WEBPACK_IMPORTED_MODULE_1__.u)();
     this.showPlayDialog = false;
   }
   componentDidLoad() {

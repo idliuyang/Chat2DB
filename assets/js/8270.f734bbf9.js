@@ -13,8 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67503);
 /* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51922);
 /* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51306);
-/* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86386);
-/* harmony import */ var _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86466);
+/* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86386);
+/* harmony import */ var _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86466);
 
 
 
@@ -101,7 +101,7 @@ const DyteScreenShareToggle = class {
             kind: 'screenshare',
           };
           this.stateUpdate.emit({ activePermissionsMessage: permissionModalSettings });
-          _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activePermissionsMessage = permissionModalSettings;
+          _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_3__.s.activePermissionsMessage = permissionModalSettings;
         }
       }
     };
@@ -117,7 +117,7 @@ const DyteScreenShareToggle = class {
           kind: 'screenshare',
         };
         this.stateUpdate.emit({ activePermissionsMessage: permissionModalSettings });
-        _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activePermissionsMessage = permissionModalSettings;
+        _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_3__.s.activePermissionsMessage = permissionModalSettings;
         return false;
       }
       const self = (_a = this.meeting) === null || _a === void 0 ? void 0 : _a.self;
@@ -132,7 +132,7 @@ const DyteScreenShareToggle = class {
         return;
       await self.enableScreenShare();
       this.stateUpdate.emit({ activeMoreMenu: false });
-      _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activeMoreMenu = false;
+      _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_3__.s.activeMoreMenu = false;
     };
     this.states = undefined;
     this.variant = 'button';
@@ -156,7 +156,7 @@ const DyteScreenShareToggle = class {
   }
   connectedCallback() {
     if (!deviceCanScreenShare()) {
-      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-screenshare-toggle] Device does not support screensharing.');
+      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_4__.l.error('[dyte-screenshare-toggle] Device does not support screensharing.');
       return;
     }
     this.meetingChanged(this.meeting);

@@ -1,293 +1,182 @@
 "use strict";
-exports.id = 4560;
-exports.ids = [4560,8270];
+exports.id = 5161;
+exports.ids = [5161,597];
 exports.modules = {
 
-/***/ 18270:
+/***/ 50597:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   dyte_screen_share_toggle: () => (/* binding */ DyteScreenShareToggle)
+/* harmony export */   dyte_participants_audio: () => (/* binding */ DyteParticipantsAudio)
 /* harmony export */ });
 /* harmony import */ var _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67503);
-/* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51922);
-/* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51306);
 /* harmony import */ var _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86386);
-/* harmony import */ var _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86466);
+/* harmony import */ var _index_c9699924_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51306);
+/* harmony import */ var _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51922);
 
 
 
 
 
+/**
+ * Handles audio from participants in a meeting
+ */
+class DyteAudio {
+  constructor() {
+    this.audio = document.createElement('audio');
+    this.audio.autoplay = true;
+    this.audioStream = new MediaStream();
+    this.audio.srcObject = this.audioStream;
+    this.audioTracks = [];
+  }
+  addTrack(id, track) {
+    if (!this.audioTracks.some((a) => a.id === id)) {
+      this.audioTracks.push({ id, track });
+      this.audioStream.addTrack(track);
+      this.play();
+    }
+  }
+  removeTrack(id) {
+    const track = this.audioTracks.find((a) => a.id === id);
+    if (track != null) {
+      this.audioStream.removeTrack(track.track);
+      this.audioTracks = this.audioTracks.filter((a) => a.id !== id);
+    }
+  }
+  async play() {
+    var _a;
+    this.audio.srcObject = this.audioStream;
+    await ((_a = this.audio.play()) === null || _a === void 0 ? void 0 : _a.catch((err) => {
+      if (err.name === 'NotAllowedError') {
+        if (this._onError != null) {
+          this._onError();
+        }
+      }
+      else if (err.name !== 'AbortError') {
+        _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-audio] play() error\n', err);
+      }
+    }));
+  }
+  async setDevice(id) {
+    var _a, _b, _c;
+    await ((_c = (_b = (_a = this.audio).setSinkId) === null || _b === void 0 ? void 0 : _b.call(_a, id)) === null || _c === void 0 ? void 0 : _c.catch((err) => {
+      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-audio] setSinkId() error\n', err);
+    }));
+  }
+  onError(onError) {
+    this._onError = onError;
+  }
+}
 
-const dyteScreenShareToggleCss = ":host{line-height:initial;font-family:var(--dyte-font-family, sans-serif);display:block}";
+const dyteParticipantsAudioCss = ":host{line-height:initial;font-family:var(--dyte-font-family, sans-serif);display:block;color:rgb(var(--dyte-colors-text-1000, 255 255 255))}.modal{box-sizing:border-box;width:100%;max-width:var(--dyte-space-96, 384px);padding:var(--dyte-space-4, 16px);border-radius:var(--dyte-border-radius-md, 8px);--tw-bg-opacity:1;background-color:rgba(var(--dyte-colors-background-1000, 8 8 8) / var(--tw-bg-opacity))}.modal h3{margin:var(--dyte-space-0, 0px);padding:var(--dyte-space-0, 0px);font-size:24px;font-weight:500}.modal p{margin-top:var(--dyte-space-4, 16px);margin-bottom:var(--dyte-space-6, 24px)}.modal dyte-button{width:100%}";
 
-const deviceCanScreenShare = () => {
-  return (typeof navigator !== 'undefined' &&
-    typeof navigator.mediaDevices !== 'undefined' &&
-    'getDisplayMedia' in navigator.mediaDevices);
-};
-const DyteScreenShareToggle = class {
+const DyteParticipantsAudio = class {
   constructor(hostRef) {
     (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.r)(this, hostRef);
-    this.stateUpdate = (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.c)(this, "dyteStateUpdate", 7);
-    this.dyteAPIError = (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.c)(this, "dyteAPIError", 7);
-    this.selfScreenShareListener = ({ screenShareEnabled }) => {
-      this.screenShareEnabled = screenShareEnabled;
-      const currentCount = this.screenShareCount + (screenShareEnabled ? 1 : -1);
-      this.screenShareCount = Math.max(currentCount, 0);
-      this.getState();
-      this.meeting.__internals__.logger.info('dyteScreenShare::screenShareUpdate', {
-        media: {
-          screenshare: {
-            enabled: this.screenShareEnabled,
-            count: this.screenShareCount,
-          },
-        },
-      });
+    this.dialogClose = (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.c)(this, "dialogClose", 7);
+    this.onDyteDialogClose = () => {
+      this.showPlayDialog = false;
+      this.dialogClose.emit();
     };
-    this.screenShareListener = ({ screenShareEnabled }) => {
-      const currentCount = this.screenShareCount + (screenShareEnabled ? 1 : -1);
-      this.screenShareCount = Math.max(currentCount, 0);
-      this.getState();
-      this.meeting.__internals__.logger.info('dyteScreenShare::screenShareUpdate', {
-        media: {
-          screenshare: {
-            enabled: this.screenShareEnabled,
-            count: this.screenShareCount,
-          },
-        },
-      });
-    };
-    this.participantLeftListener = ({ screenShareEnabled }) => {
-      if (screenShareEnabled) {
-        // decrement count if participant who left had screenShareEnabled
-        // and don't let it go below 0 (just a failsafe)
-        this.screenShareCount = Math.max(this.screenShareCount - 1, 0);
-        this.getState();
-        this.meeting.__internals__.logger.info('dyteScreenShare::screenShareUpdate', {
-          media: {
-            screenshare: {
-              enabled: this.screenShareEnabled,
-              count: this.screenShareCount,
-            },
-          },
-        });
-      }
-    };
-    this.selfJoinStateListener = () => {
-      this.updateCanProduce(this.meeting);
-    };
-    this.selfStageLeftListener = () => {
-      this.canScreenShare = false;
-    };
-    this.selfJoinStateRejectedListener = () => {
-      this.updateCanProduce(this.meeting);
-    };
-    this.mediaPermissionUpdateListener = ({ kind, message }) => {
-      if (kind === 'screenshare') {
-        this.shareScreenPermission = message;
-        this.getState();
-        if (message === 'COULD_NOT_START') {
-          this.dyteAPIError.emit({
-            trace: this.t('screenshare.permissions'),
-            message: this.t('An error occured while starting screenshare.'),
-          });
-        }
-        if (this.hasPermissionError()) {
-          const permissionModalSettings = {
-            enabled: true,
-            kind: 'screenshare',
-          };
-          this.stateUpdate.emit({ activePermissionsMessage: permissionModalSettings });
-          _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activePermissionsMessage = permissionModalSettings;
-        }
-      }
-    };
-    this.reachedMaxScreenShares = () => {
-      // checks if a limit exists, and if limit is reached
-      return this.maxScreenShareCount > 0 && this.screenShareCount >= this.maxScreenShareCount;
-    };
-    this.toggleScreenShare = async () => {
-      var _a;
-      if (this.hasPermissionError()) {
-        const permissionModalSettings = {
-          enabled: true,
-          kind: 'screenshare',
-        };
-        this.stateUpdate.emit({ activePermissionsMessage: permissionModalSettings });
-        _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activePermissionsMessage = permissionModalSettings;
-        return false;
-      }
-      const self = (_a = this.meeting) === null || _a === void 0 ? void 0 : _a.self;
-      if (this.screenShareEnabled) {
-        self.disableScreenShare();
-        return;
-      }
-      if (self == null ||
-        !this.canScreenShare ||
-        this.reachedMaxScreenShares() ||
-        this.hasPermissionError())
-        return;
-      await self.enableScreenShare();
-      this.stateUpdate.emit({ activeMoreMenu: false });
-      _store_2454ac74_js__WEBPACK_IMPORTED_MODULE_4__.s.activeMoreMenu = false;
-    };
-    this.states = undefined;
-    this.variant = 'button';
     this.meeting = undefined;
-    this.size = undefined;
-    this.iconPack = _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_1__.d;
-    this.t = (0,_index_c9699924_js__WEBPACK_IMPORTED_MODULE_2__.u)();
-    this.maxScreenShareCount = -1;
-    this.screenShareCount = 0;
-    this.screenShareEnabled = false;
-    this.canScreenShare = false;
-    this.shareScreenPermission = 'NOT_REQUESTED';
-    this.screenShareState = {
-      tooltipLabel: this.t('share_screen_start'),
-      label: this.t('share_screen_start'),
-      icon: this.iconPack.share_screen_start,
-      classList: {},
-      showWarning: false,
-      disable: false,
-    };
+    this.iconPack = _default_icon_pack_42ac57c7_js__WEBPACK_IMPORTED_MODULE_2__.d;
+    this.t = (0,_index_c9699924_js__WEBPACK_IMPORTED_MODULE_1__.u)();
+    this.showPlayDialog = false;
   }
-  connectedCallback() {
-    if (!deviceCanScreenShare()) {
-      _logger_8eaa31ac_js__WEBPACK_IMPORTED_MODULE_3__.l.error('[dyte-screenshare-toggle] Device does not support screensharing.');
-      return;
-    }
+  componentDidLoad() {
     this.meetingChanged(this.meeting);
   }
   disconnectedCallback() {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-    (_a = this.meeting) === null || _a === void 0 ? void 0 : _a.participants.joined.removeListener('screenShareUpdate', this.screenShareListener);
-    (_b = this.meeting) === null || _b === void 0 ? void 0 : _b.participants.joined.removeListener('participantLeft', this.participantLeftListener);
-    (_c = this.meeting) === null || _c === void 0 ? void 0 : _c.self.removeListener('screenShareUpdate', this.selfScreenShareListener);
-    (_d = this.meeting) === null || _d === void 0 ? void 0 : _d.self.removeListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
-    (_e = this.meeting) === null || _e === void 0 ? void 0 : _e.self.removeListener('joinStageRequestAccepted', this.selfJoinStateListener);
-    (_f = this.meeting) === null || _f === void 0 ? void 0 : _f.self.removeListener('joinStageRequestRejected', this.selfJoinStateRejectedListener);
-    (_g = this.meeting) === null || _g === void 0 ? void 0 : _g.self.removeListener('stageJoined', this.selfJoinStateListener);
-    (_h = this.meeting) === null || _h === void 0 ? void 0 : _h.self.removeListener('stageLeft', this.selfStageLeftListener);
-    (_j = this.meeting) === null || _j === void 0 ? void 0 : _j.self.removeListener('removedFromStage', this.selfJoinStateListener);
-    (_l = (_k = this.meeting) === null || _k === void 0 ? void 0 : _k.stage) === null || _l === void 0 ? void 0 : _l.removeListener('stageStatusUpdate', this.selfJoinStateListener);
+    var _a;
+    if (this.meeting == null)
+      return;
+    this.audioUpdateListener &&
+      this.meeting.participants.joined.removeListener('audioUpdate', this.audioUpdateListener);
+    this.screenShareUpdateListener &&
+      this.meeting.participants.joined.removeListener('screenShareUpdate', this.screenShareUpdateListener);
+    this.participantLeftListener &&
+      this.meeting.participants.joined.removeListener('participantLeft', this.participantLeftListener);
+    this.deviceUpdateListener &&
+      this.meeting.self.removeListener('deviceUpdate', this.deviceUpdateListener);
+    this.stageStatusUpdateListener &&
+      ((_a = this.meeting.stage) === null || _a === void 0 ? void 0 : _a.removeListener('stageStatusUpdate', this.stageStatusUpdateListener));
   }
-  meetingChanged(meeting) {
+  handleAudioError() {
+    this.audio = new DyteAudio();
+    this.audio.onError(() => {
+      this.showPlayDialog = true;
+    });
+    this.audio.play();
+  }
+  async meetingChanged(meeting) {
+    var _a;
     if (meeting != null) {
-      const { self, stage } = meeting;
-      this.updateCanProduce(meeting);
-      this.maxScreenShareCount = self.config.maxScreenShareCount;
-      this.screenShareEnabled = self.screenShareEnabled;
-      let screenShareCount = 0;
-      for (const participant of meeting.participants.joined.toArray()) {
-        if (participant.screenShareEnabled) {
-          screenShareCount++;
+      if (meeting.meta.viewType === 'LIVESTREAM' && meeting.stage.status !== 'ON_STAGE') {
+        this.stageStatusUpdateListener = (status) => {
+          if (status === 'ON_STAGE')
+            this.handleAudioError();
+        };
+        (_a = meeting.stage) === null || _a === void 0 ? void 0 : _a.on('stageStatusUpdate', this.stageStatusUpdateListener);
+      }
+      else
+        this.handleAudioError();
+      const currentDevices = meeting.self.getCurrentDevices();
+      if (currentDevices.speaker != null) {
+        await this.audio.setDevice(currentDevices.speaker.deviceId);
+      }
+      this.audioUpdateListener = ({ id, audioEnabled, audioTrack }) => {
+        const audioId = `audio-${id}`;
+        if (audioEnabled && audioTrack != null) {
+          this.audio.addTrack(audioId, audioTrack);
+        }
+        else {
+          this.audio.removeTrack(audioId);
+        }
+      };
+      {
+        const participants = meeting.participants.joined.toArray();
+        for (const participant of participants) {
+          this.audioUpdateListener(participant);
         }
       }
-      this.screenShareCount = screenShareCount;
-      this.getState();
-      meeting.__internals__.logger.info('dyteScreenShare::initialise', {
-        media: {
-          screenshare: {
-            enabled: this.screenShareEnabled,
-            count: this.screenShareCount,
-            maxAllowedCount: this.maxScreenShareCount,
-          },
-        },
-      });
-      meeting.participants.joined.addListener('screenShareUpdate', this.screenShareListener);
+      this.participantLeftListener = ({ id }) => {
+        this.audio.removeTrack(`audio-${id}`);
+        this.audio.removeTrack(`screenshare-${id}`);
+      };
+      this.screenShareUpdateListener = ({ id, screenShareEnabled, screenShareTracks }) => {
+        const audioId = `screenshare-${id}`;
+        if (screenShareEnabled && screenShareTracks.audio != null) {
+          this.audio.addTrack(audioId, screenShareTracks.audio);
+        }
+        else {
+          this.audio.removeTrack(audioId);
+        }
+      };
+      this.deviceUpdateListener = ({ device, preview }) => {
+        if (preview)
+          return;
+        if (device.kind === 'audiooutput') {
+          this.audio.setDevice(device.deviceId);
+        }
+      };
+      meeting.participants.joined.addListener('audioUpdate', this.audioUpdateListener);
+      meeting.participants.joined.addListener('screenShareUpdate', this.screenShareUpdateListener);
       meeting.participants.joined.addListener('participantLeft', this.participantLeftListener);
-      self.addListener('screenShareUpdate', this.selfScreenShareListener);
-      self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
-      self.addListener('joinStageRequestAccepted', this.selfJoinStateListener);
-      self.addListener('joinStageRequestRejected', this.selfJoinStateRejectedListener);
-      self.addListener('stageJoined', this.selfJoinStateListener);
-      self.addListener('stageLeft', this.selfStageLeftListener);
-      self.addListener('removedFromStage', this.selfJoinStateListener);
-      stage === null || stage === void 0 ? void 0 : stage.addListener('stageStatusUpdate', this.selfJoinStateListener);
+      meeting.self.addListener('deviceUpdate', this.deviceUpdateListener);
     }
-  }
-  updateCanProduce(meeting) {
-    const { self, meta, stage } = meeting;
-    const canProduceScreenshare = self.permissions.canProduceScreenshare === 'ALLOWED';
-    const isWebinar = meta.viewType === 'WEBINAR';
-    const isLiveStream = meta.viewType === 'LIVESTREAM';
-    this.canScreenShare = false;
-    if (canProduceScreenshare && !isLiveStream) {
-      this.canScreenShare = true;
-    }
-    else if (isWebinar || isLiveStream) {
-      if (canProduceScreenshare &&
-        stage.status !== 'OFF_STAGE' &&
-        stage.status !== 'REQUESTED_TO_JOIN_STAGE')
-        this.canScreenShare = true;
-      const canRequestScreenshare = self.permissions.canProduceScreenshare === 'CAN_REQUEST';
-      // If the peer has approved request to present
-      if (canRequestScreenshare &&
-        ((isWebinar &&
-          (self.webinarStageStatus === 'ON_STAGE' ||
-            self.webinarStageStatus === 'ACCEPTED_TO_JOIN_STAGE')) ||
-          (isLiveStream &&
-            (stage.status === 'ON_STAGE' || stage.status === 'ACCEPTED_TO_JOIN_STAGE')))) {
-        this.canScreenShare = true;
-      }
-    }
-  }
-  hasPermissionError() {
-    return this.shareScreenPermission === 'SYSTEM_DENIED';
-  }
-  getState() {
-    let tooltipLabel = '';
-    let label = '';
-    let icon = '';
-    let classList = {};
-    const hasError = this.hasPermissionError() && !this.screenShareEnabled;
-    const limitReached = this.reachedMaxScreenShares() && !this.screenShareEnabled;
-    const couldNotStart = this.shareScreenPermission === 'COULD_NOT_START';
-    if (this.screenShareEnabled && !hasError) {
-      label = this.t('share_screen_stop');
-      icon = this.iconPack.share_screen_stop;
-      classList['red-icon'] = true;
-    }
-    else {
-      label = this.t('share_screen_start');
-      icon = this.iconPack.share_screen_start;
-    }
-    if (this.shareScreenPermission === 'SYSTEM_DENIED') {
-      tooltipLabel = this.t('perm_sys_denied');
-      classList['red-icon'] = true;
-    }
-    else {
-      tooltipLabel = label;
-    }
-    if (limitReached) {
-      tooltipLabel = this.t('Maximum screen share limit reached');
-    }
-    if (couldNotStart) {
-      tooltipLabel = this.t('An error occurred while screen sharing, please try again.');
-    }
-    this.screenShareState = {
-      tooltipLabel,
-      label,
-      icon,
-      classList,
-      disable: hasError || limitReached,
-      showWarning: hasError || limitReached || couldNotStart,
-    };
   }
   render() {
-    if (!deviceCanScreenShare() || !this.canScreenShare) {
-      return null;
-    }
-    return ((0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)(_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.H, { title: this.screenShareState.label }, (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("dyte-tooltip", { placement: "top", kind: "block", label: this.screenShareState.tooltipLabel, delay: 600, part: "tooltip", iconPack: this.iconPack, t: this.t }, (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("dyte-controlbar-button", { part: "controlbar-button", size: this.size, iconPack: this.iconPack, t: this.t, variant: this.variant, label: this.screenShareState.label, icon: this.screenShareState.icon, class: this.screenShareState.classList, onClick: this.toggleScreenShare, disabled: this.screenShareState.disable, showWarning: this.screenShareState.showWarning }))));
+    return ((0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)(_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.H, null, this.showPlayDialog && ((0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("dyte-dialog", { open: true, onDyteDialogClose: this.onDyteDialogClose, hideCloseButton: true, iconPack: this.iconPack, t: this.t }, (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("div", { class: "modal" }, (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("h3", null, this.t('audio_playback.title')), (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, this.t('audio_playback.description')), (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.h)("dyte-button", { kind: "wide", onClick: () => {
+        this.audio.play();
+        this.onDyteDialogClose();
+      }, title: this.t('audio_playback'), iconPack: this.iconPack, t: this.t }, this.t('audio_playback')))))));
   }
   static get watchers() { return {
     "meeting": ["meetingChanged"]
   }; }
 };
-DyteScreenShareToggle.style = dyteScreenShareToggleCss;
+DyteParticipantsAudio.style = dyteParticipantsAudioCss;
 
 
 
@@ -2084,214 +1973,6 @@ const flush = () => {
 };
 const nextTick = /*@__PURE__*/ (cb) => promiseResolve().then(cb);
 const writeTask = /*@__PURE__*/ queueTask(queueDomWrites, true);
-
-
-
-
-/***/ }),
-
-/***/ 86466:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   o: () => (/* binding */ onChange),
-/* harmony export */   s: () => (/* binding */ state)
-/* harmony export */ });
-/* harmony import */ var _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67503);
-
-
-const appendToMap = (map, propName, value) => {
-    const items = map.get(propName);
-    if (!items) {
-        map.set(propName, [value]);
-    }
-    else if (!items.includes(value)) {
-        items.push(value);
-    }
-};
-const debounce = (fn, ms) => {
-    let timeoutId;
-    return (...args) => {
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-        }
-        timeoutId = setTimeout(() => {
-            timeoutId = 0;
-            fn(...args);
-        }, ms);
-    };
-};
-
-/**
- * Check if a possible element isConnected.
- * The property might not be there, so we check for it.
- *
- * We want it to return true if isConnected is not a property,
- * otherwise we would remove these elements and would not update.
- *
- * Better leak in Edge than to be useless.
- */
-const isConnected = (maybeElement) => !('isConnected' in maybeElement) || maybeElement.isConnected;
-const cleanupElements = debounce((map) => {
-    for (let key of map.keys()) {
-        map.set(key, map.get(key).filter(isConnected));
-    }
-}, 2000);
-const stencilSubscription = () => {
-    if (typeof _index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.a !== 'function') {
-        // If we are not in a stencil project, we do nothing.
-        // This function is not really exported by @stencil/core.
-        return {};
-    }
-    const elmsToUpdate = new Map();
-    return {
-        dispose: () => elmsToUpdate.clear(),
-        get: (propName) => {
-            const elm = (0,_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.a)();
-            if (elm) {
-                appendToMap(elmsToUpdate, propName, elm);
-            }
-        },
-        set: (propName) => {
-            const elements = elmsToUpdate.get(propName);
-            if (elements) {
-                elmsToUpdate.set(propName, elements.filter(_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.f));
-            }
-            cleanupElements(elmsToUpdate);
-        },
-        reset: () => {
-            elmsToUpdate.forEach((elms) => elms.forEach(_index_fe685ee5_js__WEBPACK_IMPORTED_MODULE_0__.f));
-            cleanupElements(elmsToUpdate);
-        },
-    };
-};
-
-const unwrap = (val) => (typeof val === 'function' ? val() : val);
-const createObservableMap = (defaultState, shouldUpdate = (a, b) => a !== b) => {
-    const unwrappedState = unwrap(defaultState);
-    let states = new Map(Object.entries(unwrappedState !== null && unwrappedState !== void 0 ? unwrappedState : {}));
-    const handlers = {
-        dispose: [],
-        get: [],
-        set: [],
-        reset: [],
-    };
-    const reset = () => {
-        var _a;
-        // When resetting the state, the default state may be a function - unwrap it to invoke it.
-        // otherwise, the state won't be properly reset
-        states = new Map(Object.entries((_a = unwrap(defaultState)) !== null && _a !== void 0 ? _a : {}));
-        handlers.reset.forEach((cb) => cb());
-    };
-    const dispose = () => {
-        // Call first dispose as resetting the state would
-        // cause less updates ;)
-        handlers.dispose.forEach((cb) => cb());
-        reset();
-    };
-    const get = (propName) => {
-        handlers.get.forEach((cb) => cb(propName));
-        return states.get(propName);
-    };
-    const set = (propName, value) => {
-        const oldValue = states.get(propName);
-        if (shouldUpdate(value, oldValue, propName)) {
-            states.set(propName, value);
-            handlers.set.forEach((cb) => cb(propName, value, oldValue));
-        }
-    };
-    const state = (typeof Proxy === 'undefined'
-        ? {}
-        : new Proxy(unwrappedState, {
-            get(_, propName) {
-                return get(propName);
-            },
-            ownKeys(_) {
-                return Array.from(states.keys());
-            },
-            getOwnPropertyDescriptor() {
-                return {
-                    enumerable: true,
-                    configurable: true,
-                };
-            },
-            has(_, propName) {
-                return states.has(propName);
-            },
-            set(_, propName, value) {
-                set(propName, value);
-                return true;
-            },
-        }));
-    const on = (eventName, callback) => {
-        handlers[eventName].push(callback);
-        return () => {
-            removeFromArray(handlers[eventName], callback);
-        };
-    };
-    const onChange = (propName, cb) => {
-        const unSet = on('set', (key, newValue) => {
-            if (key === propName) {
-                cb(newValue);
-            }
-        });
-        // We need to unwrap the defaultState because it might be a function.
-        // Otherwise we might not be sending the right reset value.
-        const unReset = on('reset', () => cb(unwrap(defaultState)[propName]));
-        return () => {
-            unSet();
-            unReset();
-        };
-    };
-    const use = (...subscriptions) => {
-        const unsubs = subscriptions.reduce((unsubs, subscription) => {
-            if (subscription.set) {
-                unsubs.push(on('set', subscription.set));
-            }
-            if (subscription.get) {
-                unsubs.push(on('get', subscription.get));
-            }
-            if (subscription.reset) {
-                unsubs.push(on('reset', subscription.reset));
-            }
-            if (subscription.dispose) {
-                unsubs.push(on('dispose', subscription.dispose));
-            }
-            return unsubs;
-        }, []);
-        return () => unsubs.forEach((unsub) => unsub());
-    };
-    const forceUpdate = (key) => {
-        const oldValue = states.get(key);
-        handlers.set.forEach((cb) => cb(key, oldValue, oldValue));
-    };
-    return {
-        state,
-        get,
-        set,
-        on,
-        onChange,
-        use,
-        dispose,
-        reset,
-        forceUpdate,
-    };
-};
-const removeFromArray = (array, item) => {
-    const index = array.indexOf(item);
-    if (index >= 0) {
-        array[index] = array[array.length - 1];
-        array.length--;
-    }
-};
-
-const createStore = (defaultState, shouldUpdate) => {
-    const map = createObservableMap(defaultState, shouldUpdate);
-    map.use(stencilSubscription());
-    return map;
-};
-
-const { state, onChange } = createStore({});
 
 
 
