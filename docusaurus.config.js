@@ -38,6 +38,11 @@ const config = {
         theme: {
           customCss: [require.resolve('./src/css/custom.css')],
         },
+        // 设置谷歌数据分析
+        gtag: {
+          trackingID: 'G-HLJ1ZEFTZM',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
