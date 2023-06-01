@@ -175,7 +175,7 @@ const config = {
         {
           name: 'keywords',
           content:
-            'chat2DB, chat2db, chat2db开源, chat2db开源版, chat2db开源版本, chat2db开源项目, chat2db开源代码, chat2db开源文档, chat2db开源教程, chat2db开源安装, chat2db开源下载, chat2db开源安装教程, chat2db开源安装文档, chat2db开源安装手册, chat2db开源安装指南, chat2db开源安装说明, chat2db开源安装帮助, chat2db开源安装步骤, chat2db开源安装配置, chat2db开源安装环境, chat2db开源安装要求',
+            'chat2DB, MySQL, Oracle, 数据库管理工具, 数据库连接, SQL Server, chat2db, chat2db开源, chat2db开源文档, chat2db开源教程, chat2db开源安装, chat2db开源下载, chat2db开源安装教程, chat2db开源安装文档, chat2db开源安装手册, chat2db开源安装指南, chat2db开源安装说明, chat2db开源安装帮助, chat2db开源安装步骤, chat2db开源安装配置, chat2db开源安装环境, chat2db开源安装要求',
         },
         {
           name: 'description',
