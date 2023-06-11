@@ -7,7 +7,7 @@ description: Chat2DB一个集成了AI能力的、支持Mysql、Oracle等多种�
 ## ⏬ 下载安装
 | 描述                   | 下载地址                                                                                                                                                                                                                                       |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Windows               | [https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB%20Setup%201.0.8.exe](https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB%20Setup%201.0.8.exe) |
-| MacOS ARM64 (Apple芯片) | [https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB-1.0.8-arm64.dmg](https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB-1.0.8-arm64.dmg) |
-| MacOS X64 (Intel芯片)   | [https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB-1.0.8.dmg](https://oss-chat2db.alibaba.com/release/1.0.8/Chat2DB-1.0.8.dmg) |       
-| Jar包                  | [https://oss-chat2db.alibaba.com/release/1.0.8/ali-dbhub-server-start.jar](https://oss-chat2db.alibaba.com/release/1.0.8/ali-dbhub-server-start.jar) | 
+| Windows               | [https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB%20Setup%201.0.10.exe](https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB%20Setup%201.0.10.exe) |
+| MacOS ARM64 (Apple芯片) | [https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB-1.0.10-arm64.dmg](https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB-1.0.10-arm64.dmg) |
+| MacOS X64 (Intel芯片)   | [https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB-1.0.10.dmg](https://oss-chat2db.alibaba.com/release/1.0.10/Chat2DB-1.0.10.dmg) |       
+| Jar包                  | [https://oss-chat2db.alibaba.com/release/1.0.10/ali-dbhub-server-start.jar](https://oss-chat2db.alibaba.com/release/1.0.10/ali-dbhub-server-start.jar) | 
