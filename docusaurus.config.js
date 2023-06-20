@@ -134,7 +134,7 @@ const config = {
           },
           {
             label: 'Github',
-            to: 'https://github.com/alibaba/Chat2DB',
+            to: 'https://github.com/chat2db/Chat2DB',
           },
         ],
       },
@@ -186,7 +186,7 @@ const config = {
       announcementBar: {
         id: 'announcementBar-2',
         content:
-          '⭐ 开源不易，如果觉得本项目对您的工作还是有帮助的话， 请帮忙在<a target="_blank" rel="noopener noreferrer" href="https://github.com/alibaba/Chat2DB">GitHub</a> 点个⭐️Star',
+          '⭐ 开源不易，如果觉得本项目对您的工作还是有帮助的话， 请帮忙在<a target="_blank" rel="noopener noreferrer" href="https://github.com/chat2db/Chat2DB">GitHub</a> 点个⭐️Star',
       },
     }),
 
