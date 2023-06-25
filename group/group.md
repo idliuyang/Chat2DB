@@ -11,5 +11,5 @@ sidebar_position: 1
 ### QQ群
 #### chat2db交流群1: 863576619
 ![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/a3ee1084-eab9-439a-a625-0aca79cfd00b.jpeg?x-oss-process=image/resize,w_300,m_lfit,limit_1)
-## 欢迎关注微信公众号
+## 欢迎关注微信公众号(Text2SQL)
 ![微信公众号](https://oss-chat2db.alibaba.com/static/wechat.webp?x-oss-process=image/resize,w_300)
