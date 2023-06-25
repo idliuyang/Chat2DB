@@ -48,6 +48,17 @@ const config = {
   ],
 
   plugins: [
+    [
+      // 这里新增一个 多个doc的插件 专门用来 管理 社区 可以参考：https://docusaurus.io/docs/docs-multi-instance
+      // 为什么不用docs一起？ 因为 社区 不需要版本管理
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
+        sidebarPath: require.resolve('./sidebarsCommunity.js'),
+      },
+    ],
     // 接入开源官网的流量统计
     [
       'docusaurus-plugin-includes',
