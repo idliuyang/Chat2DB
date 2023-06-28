@@ -3,10 +3,10 @@ title: 加群讨论
 sidebar_position: 1
 ---
 ## 微信群
-### Chat2DB交流群9
-![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/a7f4393c-cf83-4bb4-bbef-e4e6cc7545c8.png?x-oss-process=image/resize,w_300,m_lfit,limit_1)
 ### Chat2DB交流群10
 ![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/d9fe9464-8def-4aa8-94a5-5d8e61c4b793.png?x-oss-process=image/resize,w_300,m_lfit,limit_1)
+### Chat2DB交流群11
+![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/b7647f29-290c-413c-b5f1-cc974d8e4e31.png?x-oss-process=image/resize,w_300,m_lfit,limit_1)
 ## 钉钉群
 ### [Chat2DB交流2群: 33285019116](https://qr.dingtalk.com/action/joingroup?code=v1,k1,c1Z99xDAWW0LoajvMwohGzcK7s7onp/spRpH4TAjihQ=&_dt_no_comment=1&origin=11)
 ## QQ群
