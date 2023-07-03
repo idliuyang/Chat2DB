@@ -36,7 +36,7 @@ export default function APIReferenceSection() {
           <ul className="mt-10 flex list-none flex-col gap-4 text-left lg:pl-0">
             <li className="flex flex-col gap-1">
               <Link
-                href="https://github.com/alibaba/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E8%BD%ACsql"
+                href="https://github.com/chat2db/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E8%BD%ACsql"
                 className="group font-jakarta font-semibold text-current"
               >
                 自然语言转SQL
@@ -48,7 +48,7 @@ export default function APIReferenceSection() {
             </li>
             <li className="flex flex-col gap-1">
               <Link
-                href="https://github.com/alibaba/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E8%A7%A3%E9%87%8A"
+                href="https://github.com/chat2db/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E8%A7%A3%E9%87%8A"
                 className="group font-jakarta font-semibold text-current"
               >
                 SQL解释
@@ -60,7 +60,7 @@ export default function APIReferenceSection() {
             </li>
             <li className="flex flex-col gap-1">
               <Link
-                href="https://github.com/alibaba/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E4%BC%98%E5%8C%96"
+                href="https://github.com/chat2db/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E4%BC%98%E5%8C%96"
                 className="group font-jakarta font-semibold text-current"
               >
                 SQL优化
@@ -74,7 +74,7 @@ export default function APIReferenceSection() {
             </li>
             <li className="flex flex-col gap-1">
               <Link
-                href="https://github.com/alibaba/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E4%BC%98%E5%8C%96"
+                href="https://github.com/chat2db/Chat2DB/blob/main/CHAT2DB_AI_SQL.md#sql%E4%BC%98%E5%8C%96"
                 className="group font-jakarta font-semibold text-current"
               >
                 SQL转换

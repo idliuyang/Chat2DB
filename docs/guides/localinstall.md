@@ -18,7 +18,7 @@ description: Chat2DB一个集成了AI能力的、支持Mysql、Oracle等多种�
 ## 💻 本地调试
 - git clone到本地
 ```bash
-$ git clone git@github.com:alibaba/Chat2DB.git
+$ git clone git@github.com:chat2db/Chat2DB.git
 ```
 - 前端安装
 ```bash

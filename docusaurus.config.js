@@ -16,7 +16,7 @@ const config = {
   favicon: 'favicon.ico',
   url: 'https://chat2db.opensource.alibaba.com',
   baseUrl: '/',
-  organizationName: 'alibaba',
+  organizationName: 'chat2db',
   projectName: 'chat2db',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

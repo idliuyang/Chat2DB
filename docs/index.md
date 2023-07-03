@@ -17,8 +17,8 @@ description: Chat2DB一个集成了AI能力的、支持Mysql、Oracle等多种�
 
 ## 📑 Github地址
 
-* <a href="https://github.com/alibaba/Chat2DB/wiki">WIKI</a>
-* <a href="https://github.com/alibaba/Chat2DB/issues">Issue tracker</a>
+* <a href="https://github.com/chat2db/Chat2DB/wiki">WIKI</a>
+* <a href="https://github.com/chat2db/Chat2DB/issues">Issue tracker</a>
 
 ## 🔌 支持的数据库
 * Mysql
