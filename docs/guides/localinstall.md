@@ -22,22 +22,22 @@ $ git clone git@github.com:chat2db/Chat2DB.git
 ```
 - 前端安装
 ```bash
-$ cd Chat2DB/ali-dbhub-client
+$ cd Chat2DB/chat2db-client
 $ npm install # 安装npm 
 $ npm run build:prod # 把js打包生成到后端的source目录
 ```
 - 后端调试
 ```bash
-$ cd ../ali-dbhub-server
+$ cd ../chat2db-server
 $ mvn clean install # 需要安装maven 3.8以上版本
-$ cd ali-dbhub-server/ali-dbhub-server-start/target/
-$ java -jar -Dchatgpt.apiKey=xxxxx ali-dbhub-server-start.jar  # 启动应用 chatgpt.apiKey 需要输入ChatGPT的key,如果不输入无法使用AIGC功能
+$ cd chat2db-server/chat2db-server-start/target/
+$ java -jar -Dchatgpt.apiKey=xxxxx chat2db-server-start.jar  # 启动应用 chatgpt.apiKey 需要输入ChatGPT的key,如果不输入无法使用AIGC功能
 $ # 打开 http://localhost:7001 开启调试
 ```
 
 - 前端调试
 ```bash
-$ cd Chat2DB/ali-dbhub-client
+$ cd Chat2DB/chat2db-client
 $ npm install 
 $ npm run start
 $ # 打开 http://localhost:8001 开启前端调试
