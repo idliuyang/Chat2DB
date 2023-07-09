@@ -3,8 +3,8 @@ title: 加群讨论
 sidebar_position: 1
 ---
 ## 微信群
-### Chat2DB交流群12
-![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/6b521064-5bdb-4c24-8c4f-164dafde394b.png?x-oss-process=image/resize,w_300,m_lfit,limit_1)
+### Chat2DB交流群13
+![img](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/WgZOZxxpB0gPnLX8/img/8e49f686-e9a8-4e1d-aaa7-0941d7403e82.png?x-oss-process=image/resize,w_300,m_lfit,limit_1)
 ## 钉钉群
 ### [Chat2DB交流2群: 33285019116](https://qr.dingtalk.com/action/joingroup?code=v1,k1,c1Z99xDAWW0LoajvMwohGzcK7s7onp/spRpH4TAjihQ=&_dt_no_comment=1&origin=11)
 ## QQ群
