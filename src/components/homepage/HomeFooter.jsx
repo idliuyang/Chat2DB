@@ -37,6 +37,7 @@ export default function HomeFooter({ className }) {
           </Link>
         </div> */}
         <div className="flex-1 text-zinc-400 lg:text-right">
+            <a href="https://beian.miit.gov.cn/"><span>浙ICP备2022003691号-4</span></a>
           Copyright &copy; Chat2DB since 2023. All rights reserved.
         </div>
       </div>
